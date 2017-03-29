@@ -10,8 +10,8 @@ $(document).ready(function() {
         url: "/api/v1/users/1"
     }).then(function(response) {
       console.log(response)
-       $('#the_user .name').append(response.data.attributes.name);
-       $('#the_user .email').append(response.data.attributes.email);
+       $('#the_user .name').html(response.data.attributes.name);
+       $('#the_user .email').html(response.data.attributes.email);
     }).fail(function() {
        $('#the_user').html("Data for user could not be loaded.")
     });
@@ -19,5 +19,5 @@ $(document).ready(function() {
 </script>
 
 <p id="the_user">
-  Name: <span class="name"><span>, E-Mail: <span class="email"><span>
+  Name: <span class="name"></span>, E-Mail: <span class="email"></span>
 </p>
