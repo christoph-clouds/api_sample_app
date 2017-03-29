@@ -1,0 +1,23 @@
+<% provide(:title, "jQuery Client") %>
+<h1>jQuery Client</h1>
+<p>
+  This page shows how you can access the rest api from jQuery.
+</p> 
+
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "/api/v1/users/1"
+    }).then(function(response) {
+      console.log(response)
+       $('#the_user .name').append(response.data.attributes.name);
+       $('#the_user .email').append(response.data.attributes.email);
+    }).fail(function() {
+       $('#the_user').html("Data for user could not be loaded.")
+    });
+});
+</script>
+
+<p id="the_user">
+  Name: <span class="name"><span>, E-Mail: <span class="email"><span>
+</p>
