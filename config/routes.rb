@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get    '/about',   to: 'static_pages#about'
   get    '/contact', to: 'static_pages#contact'
 
-  get    '/jq', to: 'static_pages#jq'
+  get    '/frontend1', to: 'static_pages#frontend1'
+  get    '/frontend2', to: 'static_pages#frontend2'
 
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'

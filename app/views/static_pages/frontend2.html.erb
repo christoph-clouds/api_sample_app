@@ -1,13 +1,20 @@
 <% provide(:title, "jQuery Client") %>
-<h1>jQuery Client</h1>
+<h1>Frontend 1</h1>
 <p>
-  This page shows how you can access the rest api from jQuery.
+  This page shows how you can access the separate api.
+  The API offers jsonapi style data.</p>
+
+  <ul>
+    <li>Load one users data from <kbd>/api/v1/users/1</kbd></li>
+    <li>Load list of users from <kbd>/api/v1/users/</kbd></li>
+  </ul>
 </p> 
 
 <script>
 $(document).ready(function() {
     $.ajax({
-        url: "/api/v1/users/1"
+        url: '/api/v1/users/1',
+        dataType: 'json'
     }).then(function(response) {
       console.log(response)
        $('#the_user .name').html(response.data.attributes.name);
@@ -34,10 +41,12 @@ $(document).ready(function(){
 });
 </script>
 
+<h3>One User</h3>
 <p id="the_user">
   Name: <span class="name"></span>, E-Mail: <span class="email"></span>
 </p>
 
+<h3>All Users</h3>
 <table id="user_table" class="display">
     <thead>
         <tr>
@@ -51,13 +60,6 @@ $(document).ready(function(){
             <td>Row 1 Data 1</td>
             <td>Row 1 Data 2</td>
             <td>Row 1 Data 2</td>
-
-        </tr>
-        <tr>
-            <td>Row 2 Data 1</td>
-            <td>Row 2 Data 2</td>
-            <td>Row 2 Data 2</td>
-
         </tr>
     </tbody>
 </table>

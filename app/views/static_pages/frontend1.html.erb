@@ -1,0 +1,66 @@
+<% provide(:title, "jQuery Client") %>
+<h1>Frontend 1</h1>
+<p>
+  This page shows how you can access JSON Data produced
+  by the existing rails controllers:
+
+  <ul>
+    <li>Load one users data from <kbd>/users/1.json</kbd></li>
+    <li>Load list of users from <kbd>/users.json</kbd></li>
+  </ul>
+</p> 
+
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: '/users/1',
+        dataType: 'json'
+    }).then(function(response) {
+       $('#the_user .name').html(response.name);
+       $('#the_user .email').html(response.email);
+    }).fail(function() {
+       $('#the_user').html("Data could not be loaded.")
+    });
+});
+
+$(document).ready(function(){
+    $.fn.dataTable.ext.errMode = 'none';
+    $('#user_table').on( 'error.dt', function ( e, settings, techNote, message ) {
+        console.log( 'An error has been reported by DataTables: ', message );
+        $('#user_table .dataTables_empty').html('Data could not be loaded.');
+    }).DataTable({
+      "paging"    : false,
+      "ajax"       : "/api/v1/users",
+      "columns"    : [ 
+            { data: "id" }, 
+            { data: "name" }, 
+            { data: "email" }
+        ]    
+    });
+});
+</script>
+
+<h3>One User</h3>
+<p id="the_user">
+  Name: <span class="name"></span>, E-Mail: <span class="email"></span>
+</p>
+
+<h3>All Users</h3>
+
+<table id="user_table" class="display">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+            <td>Row 1 Data 2</td>
+
+        </tr>
+    </tbody>
+</table>

@@ -16,6 +16,9 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
-  def jq
-  end  
+  def frontend1
+  end
+
+  def frontend2
+  end
 end
