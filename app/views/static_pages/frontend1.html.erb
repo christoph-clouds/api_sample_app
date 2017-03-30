@@ -34,11 +34,33 @@ $(document).ready(function(){
         "url": "/users.json",
          "dataSrc": ''
       },
+      "order": [[ 1, 'asc' ]],
       "columns"    : [ 
+            {
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },      
             { data: "id" }, 
             { data: "name" }, 
             { data: "email" }
-        ]    
+      ], 
+      "select": {
+                style:    'os',
+                selector: 'td:first-child'
+      },
+      buttons: {
+          buttons: [
+              'copy',
+              {
+                  text: 'My button',
+                  action: function ( dt ) {
+                      console.log( 'My custom button!' );
+                  }
+              }
+          ]
+      }        
     });
 });
 </script>
@@ -53,17 +75,10 @@ $(document).ready(function(){
 <table id="user_table" class="display">
     <thead>
         <tr>
+            <th></th>
             <th>id</th>
             <th>Name</th>
             <th>E-Mail</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-            <td>Row 1 Data 2</td>
-
-        </tr>
-    </tbody>
 </table>

@@ -32,11 +32,22 @@ $(document).ready(function(){
     }).DataTable({
       "paging"    : false,
       "ajax"       : "/api/v1/users",
+      "order": [[ 1, 'asc' ]],      
       "columns"    : [ 
+            {
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },           
             { data: "id" }, 
             { data: "attributes.name" }, 
             { data: "attributes.email" }
-        ]    
+        ], 
+        select: {
+                style:    'os',
+                selector: 'td:first-child'
+        }    
     });
 });
 </script>
@@ -50,6 +61,7 @@ $(document).ready(function(){
 <table id="user_table" class="display">
     <thead>
         <tr>
+            <th>x</th>
             <th>id</th>
             <th>Name</th>
             <th>E-Mail</th>
@@ -57,6 +69,7 @@ $(document).ready(function(){
     </thead>
     <tbody>
         <tr>
+           <td>Row 1 Data 1</td>
             <td>Row 1 Data 1</td>
             <td>Row 1 Data 2</td>
             <td>Row 1 Data 2</td>
