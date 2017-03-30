@@ -5,8 +5,8 @@
   by the existing rails controllers:
 
   <ul>
-    <li>Load one users data from <kbd>/users/1.json</kbd></li>
-    <li>Load list of users from <kbd>/users.json</kbd></li>
+    <li>Load one users data from <a href="/users/1.json">/users/1.json</a></li>
+    <li>Load list of users from <a href="/users.json">/users.json</a></li>
   </ul>
 </p> 
 
@@ -30,7 +30,10 @@ $(document).ready(function(){
         $('#user_table .dataTables_empty').html('Data could not be loaded.');
     }).DataTable({
       "paging"    : false,
-      "ajax"       : "/api/v1/users",
+      "ajax"       : { 
+        "url": "/users.json",
+         "dataSrc": ''
+      },
       "columns"    : [ 
             { data: "id" }, 
             { data: "name" }, 
