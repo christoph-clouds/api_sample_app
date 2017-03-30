@@ -29,6 +29,7 @@ $(document).ready(function(){
         console.log( 'An error has been reported by DataTables: ', message );
         $('#user_table .dataTables_empty').html('Data could not be loaded.');
     }).DataTable({
+      "dom": 'Bfrtip',      
       "paging"    : false,
       "ajax"       : { 
         "url": "/users.json",
@@ -54,9 +55,12 @@ $(document).ready(function(){
           buttons: [
               'copy',
               {
-                  text: 'My button',
-                  action: function ( dt ) {
-                      console.log( 'My custom button!' );
+                  text: 'Delete',
+                  action: function ( e ) {
+                      var table = $('#user_table').DataTable();
+                      var data = table.row( { selected: true } ).data();
+                      var id = data.id;
+                      console.log('I should delete user with id ' + id);
                   }
               }
           ]
