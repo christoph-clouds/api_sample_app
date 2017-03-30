@@ -19,19 +19,6 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  before_validation :ensure_token
-
-  def ensure_token
-    self.token = generate_hex(:token) unless token.present?
-  end
-
-  def generate_hex(column)
-    loop do
-      hex = SecureRandom.hex
-      break hex unless self.class.where(column => hex).any?
-    end
-  end  
-
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
