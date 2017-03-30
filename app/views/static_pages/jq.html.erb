@@ -16,8 +16,48 @@ $(document).ready(function() {
        $('#the_user').html("Data for user could not be loaded.")
     });
 });
+
+$(document).ready(function(){
+    $.fn.dataTable.ext.errMode = 'none';
+    $('#user_table').on( 'error.dt', function ( e, settings, techNote, message ) {
+        console.log( 'An error has been reported by DataTables: ', message );
+        $('#user_table .dataTables_empty').html('Data could not be loaded.');
+    }).DataTable({
+      "paging"    : false,
+      "ajax"       : "/api/v1/users",
+      "columns"    : [ 
+            { data: "id" }, 
+            { data: "attributes.name" }, 
+            { data: "attributes.email" }
+        ]    
+    });
+});
 </script>
 
 <p id="the_user">
   Name: <span class="name"></span>, E-Mail: <span class="email"></span>
 </p>
+
+<table id="user_table" class="display">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>E-Mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+            <td>Row 1 Data 2</td>
+
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+            <td>Row 2 Data 2</td>
+
+        </tr>
+    </tbody>
+</table>
